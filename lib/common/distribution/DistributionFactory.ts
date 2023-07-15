@@ -1,4 +1,4 @@
-import { Distribution, Server, Module, Type, Required as HeliosRequired, JavaVersionProps, JavaPlatformOptions, Platform, JdkDistribution } from 'helios-distribution-types'
+import { Distribution, Server, Module, Type, Required as HeliosRequired, JavaVersionProps, JavaPlatformOptions, Platform, JdkDistribution } from 'rgblauncher-distribution-types'
 import { MavenComponents, MavenUtil } from '../util/MavenUtil'
 import { join } from 'path'
 import { LoggerUtil } from '../../util/LoggerUtil'
@@ -59,6 +59,7 @@ export class HeliosServer {
     public readonly hostname: string
     public readonly port: number
     public readonly effectiveJavaOptions: Required<JavaVersionProps>
+    public readonly technic: string
 
     constructor(
         public readonly rawServer: Server,
@@ -66,6 +67,7 @@ export class HeliosServer {
         instanceDir: string
     ) {
         const { hostname, port } = this.parseAddress()
+        this.technic = rawServer.technic
         this.hostname = hostname
         this.port = port
         this.effectiveJavaOptions = this.parseEffectiveJavaOptions()
